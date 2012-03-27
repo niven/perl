@@ -1,0 +1,9 @@
+Generate all candidate words from phone number (no numbers including 0/1)
+
+Using a stack
+perl -le '@m=(0,0, map {[split "",$_]} qw/abc def ghi jkl mno pqrs tuv wxyz/); @num=split "", $ARGV[0]; @w= @{$m[pop @num]}; while($#num >= 0){ $l = pop @num; @t=(); for $n (@{$m[$l]}) { push @t, $n . $_ for @w; }; @w = @t; }; print "@w"; print scalar @w;' 23333
+
+Using recusrion
+perl -le '@m=(0,0, map {[split "",$_]} qw/abc def ghi jkl mno pqrs tuv wxyz/); sub g{ return length($_[0]) ? map { local $t=$_; map { $t . $_  } g(substr($_[0],1))  } @{$m[substr($_[0],0,1)]}  : ""  }; @o =g($ARGV[0]); print "@o"; print scalar @o' 23333
+
+
