@@ -1,1 +1,5 @@
 Just various Perl tidbits so I don't have to email them to myself
+
+oneliners.txt - cute and awful
+
+range_nb.pl - find the largest contiguous range of integers in an unsorted array in both O(n) memory and operations, without using branches.
