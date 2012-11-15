@@ -18,25 +18,21 @@ my %backward;
 my $longest = $n[0];
 for my $i (@n) {
 
-    # point at myself, or what my succ points at
+    # point at myself, or what my successor points at
     my $forward_val = $forward{ $i+1 };
     $forward_val += -!$forward_val & $i; # taking advantage of undef to 0 promotion in inc (foo = undef + 2 warns)
     $forward{ $i } = $forward_val; 
-    
-    # correct the endpoint to point back at the backmost
-    $backward{ $forward{ $i } } = $backward{ $i };
-  
-    # point at myself or what my pred points at
+
+    # point at myself or what my predecessor points at
     my $backward_val = $backward{ $i-1 };
     $backward_val += -!$backward_val & $i;
-    $backward{ $i } = $backward_val; 
+    $backward{ $i } = $backward_val;
 
-    # correct the start to point at farthest forward
+    # point the end of this range to the start
+    $backward{ $forward{ $i } } = $backward{ $i };
+
+    # point the start to the end
     $forward{ $backward{ $i } } = $forward{ $i };
-
-    # do both again to fixup propagations    
-    $backward{ $forward{ $i } } = $backward{ $i }; # correct the endpoint to point back at the backmost
-    $forward{ $backward{ $i } } = $forward{ $i }; # correct the start to point at farthest forward
     
     # update the current longest chain
     my $is_longer = $forward{ $i } - $backward{ $i } > $forward{ $longest } - $backward{ $longest };
