@@ -36,8 +36,7 @@ for my $i (@n) {
     
     # update the current longest chain
     my $is_longer = $forward{ $i } - $backward{ $i } > $forward{ $longest } - $backward{ $longest };
-    my $l2 = -$is_longer & $backward{ $i };
-    $longest += $l2 - ($l2 > 0) & $longest; 
+    $longest = (-$is_longer & $backward{ $i }) + (($is_longer-1) & $longest);
 }
 
 print "Longest range: $longest -> $forward{$longest}\n";
