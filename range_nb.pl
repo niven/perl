@@ -5,7 +5,12 @@
 use strict;
 use warnings;
 
-my @n = (2, 10, 3, 12, 5, 4, 11, 8, 7, 6, 15);
+my @n = (2, 10, 3, 12, 5, 4, 11, 8, 7, 6, 15); # test from stackoverflow
+# various other tests
+#@n = (1,2,3,5,6,7,8); # second list longer than first
+#@n = (5,6,7,8,1,2,3); # first list longer than second
+#@n = (1,2,3,5,6,7,8,4); # last element links up 2 lists
+#@n = (1,2,3,10,11,12,13,5,6,7); # longest list is middle one
 
 my %forward;
 my %backward;
