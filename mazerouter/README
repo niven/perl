@@ -1,0 +1,3 @@
+Implementation of a  mazerouter for routing logic nets (for a Coursera course, but the algorithm is interesting)
+
+Also a bunch of example files (grid definition + netlist)
